@@ -44,6 +44,19 @@ public class EIM {
 	public static final IRI SOFTWARE_ASSET;
 	public static final IRI TRANSACTION_DATA;
 	public static final IRI VALIDITY;
+	public static final IRI DATA_CLASSIFIED_BY;
+	public static final IRI HAS_DATA_CUSTODIAN;
+	public static final IRI HAS_DATA_OWNER;
+	public static final IRI HAS_DATA_STEWARD;
+	public static final IRI IS_AUTHORATATIVE_SOURCE_FOR;
+	public static final IRI IS_DATA_PROVIDER_FOR;
+	public static final IRI IS_GOVERNED_BY;
+	public static final IRI HAS_CODE;
+	public static final IRI HAS_DESCRIPTION;
+	public static final IRI HAS_DISPLAY_NAME;
+	public static final IRI HAS_ID;
+	public static final IRI HAS_NAME;
+	 
 	static {
 		ValueFactory factory = SimpleValueFactory.getInstance();
 		ACCOUNTING_EVENT = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#AccountingEvent");
@@ -72,6 +85,19 @@ public class EIM {
 		EVENT_DATA=factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#EventData");
 		FINANCIAL_EVENT=factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#FinancialEvent");
 		VALIDITY=factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#Validity");
+		DATA_CLASSIFIED_BY = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#data_classified_by");
+		HAS_DATA_CUSTODIAN = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#has_data_custodian");
+		HAS_DATA_OWNER = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#has_data_owner");
+		HAS_DATA_STEWARD = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#has_data_steward");
+		IS_AUTHORATATIVE_SOURCE_FOR = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#is_authoratative_source_for");
+		IS_DATA_PROVIDER_FOR = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#is_data_provider_for");
+		IS_GOVERNED_BY = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#is_governed_by");
+		HAS_CODE = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#hasCode");
+		HAS_DESCRIPTION = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#hasDescription");
+		HAS_DISPLAY_NAME = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#hasDisplayName");
+		HAS_ID = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#hasId");
+		HAS_NAME = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#hasName");
+		 
 	}
 	
 }
