@@ -7,7 +7,7 @@ import org.eclipse.rdf4j.model.impl.SimpleValueFactory;
 /**
  * Constants for EIM primitives and for the EIM namespace.<br>
  * Resources here are defined according to the EIM specs on
- * <a href="http://spec.trigyan.net/glide/EnterpriseInformationModel/">http://spec.trigyan.net/glide/EnterpriseInformationModel</a>, version 0.99
+ * <a href=NAMESPACE+"/">NAMESPACE+"</a>, version 0.99
  */
 public class EIM {
 	/**
@@ -56,6 +56,7 @@ public class EIM {
 	public static final IRI HAS_ID;
 	public static final IRI HAS_NAME;
 	public static final IRI IS_GOVERNED_BY;
+	public static final IRI IS_PROVISIONED_BY;
 	public static final IRI IS_MANAGED_BY;
 	public static final IRI DATA_VISIBIITY_CLASSIFICATION;
 	public static  final IRI PUBLIC;
@@ -64,59 +65,75 @@ public class EIM {
 	public static final IRI HCI;
 	public static final IRI PID;
 	public static final IRI CID;
+	public static final IRI ASSET_ID;
+	public static final IRI ASSET_NAME;
+	public static final IRI IS_OWNED_BY;
+	public static final IRI APPLICATION_ID;
+	public static final IRI APPLICATION_NAME;
+	public static final IRI SERVICE_NAME;
+	public static final IRI SERVICE_ID;
+	
 	 
 	static {
 		ValueFactory factory = SimpleValueFactory.getInstance();
-		ACCOUNTING_EVENT = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#AccountingEvent");
-		ACCURACY=factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#Accuracy");
-		ANY_STANDARD_APPLICATION=factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#Application");
-		BUSINESS_DATA=factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#BusinessData");
-		BUSINESS_RULE=factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#BusinessRule");
-		BUSINESS_TERM=factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#BusinessTerm");
-		GOVERNANCE_ASSET=factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#GovernanceAsset");
-		MASTER_DATA=factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#MasterData");
-		REFERENCE_DATA=factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#ReferenceData");
-		STANDARD_SERVICE=factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#Service");
-		SOFTWARE_ASSET=factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#SoftwareAsset");
-		TRANSACTION_DATA=factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#TransactionData");
-		COMPLETENESS=factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#Completeness");
-		CONFORMITY=factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#Conformity");
-		CRITICAL_DATA_ELEMENT=factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#CriticalDataElement");
-		DATASET=factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#Dataset");
-		DERIVED_DATA=factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#DerivedData");
-		DATA_ASSET=factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#DataAsset");
-		DATA_ATTRIBUTE=factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#DataAttribute");
-		DATA_DOMAIN=factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#DataDomain");
-		DATA_ELEMENT=factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#DataElement");
-		DATA_QUALITY_DIMENSION=factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#DataQualityDimension");
-		DATA_QUALITY_RULE=factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#DataQualityRule");
-		EVENT_DATA=factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#EventData");
-		FINANCIAL_EVENT=factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#FinancialEvent");
-		VALIDITY=factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#Validity");
-		DATA_OWNER = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#DataOwner");
-		DATA_CUSTODIAN=factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#DataCustodian");
-		DATA_STEWARD=factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#DataSteward");
-		DATA_CLASSIFIED_BY = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#data_classified_by");
-		//HAS_DATA_CUSTODIAN = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#has_data_custodian");
-		//HAS_DATA_OWNER = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#has_data_owner");
-		//HAS_DATA_STEWARD = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#has_data_steward");
-		IS_AUTHORATATIVE_SOURCE_FOR = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#is_authoratative_source_for");
-		IS_DATA_PROVIDER_FOR = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#is_data_provider_for");
-		IS_GOVERNED_BY = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#is_governed_by");
-		IS_MANAGED_BY = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#is_managed_by");
-		HAS_CODE = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#hasCode");
-		HAS_DESCRIPTION = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#hasDescription");
-		HAS_DISPLAY_NAME = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#hasDisplayName");
-		HAS_ID = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#hasId");
-		HAS_NAME = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#hasName");
-		DATA_VISIBIITY_CLASSIFICATION = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#DataVisibiityClassification");
-		PUBLIC = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#Public");
-		INTERNAL=factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#Internal");
-		CONFIDENTIAL=factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#Confidential");
-		HCI = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#HCI");
-		PID = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#PID");
-		CID = factory.createIRI("http://spec.trigyan.net/glide/EnterpriseInformationModel#CID");
-		 
+		ACCOUNTING_EVENT = factory.createIRI(NAMESPACE+"#AccountingEvent");
+		ACCURACY=factory.createIRI(NAMESPACE+"#Accuracy");
+		ANY_STANDARD_APPLICATION=factory.createIRI(NAMESPACE+"#Application");
+		BUSINESS_DATA=factory.createIRI(NAMESPACE+"#BusinessData");
+		BUSINESS_RULE=factory.createIRI(NAMESPACE+"#BusinessRule");
+		BUSINESS_TERM=factory.createIRI(NAMESPACE+"#BusinessTerm");
+		GOVERNANCE_ASSET=factory.createIRI(NAMESPACE+"#GovernanceAsset");
+		MASTER_DATA=factory.createIRI(NAMESPACE+"#MasterData");
+		REFERENCE_DATA=factory.createIRI(NAMESPACE+"#ReferenceData");
+		STANDARD_SERVICE=factory.createIRI(NAMESPACE+"#Service");
+		SOFTWARE_ASSET=factory.createIRI(NAMESPACE+"#SoftwareAsset");
+		TRANSACTION_DATA=factory.createIRI(NAMESPACE+"#TransactionData");
+		COMPLETENESS=factory.createIRI(NAMESPACE+"#Completeness");
+		CONFORMITY=factory.createIRI(NAMESPACE+"#Conformity");
+		CRITICAL_DATA_ELEMENT=factory.createIRI(NAMESPACE+"#CriticalDataElement");
+		DATASET=factory.createIRI(NAMESPACE+"#Dataset");
+		DERIVED_DATA=factory.createIRI(NAMESPACE+"#DerivedData");
+		DATA_ASSET=factory.createIRI(NAMESPACE+"#DataAsset");
+		DATA_ATTRIBUTE=factory.createIRI(NAMESPACE+"#DataAttribute");
+		DATA_DOMAIN=factory.createIRI(NAMESPACE+"#DataDomain");
+		DATA_ELEMENT=factory.createIRI(NAMESPACE+"#DataElement");
+		DATA_QUALITY_DIMENSION=factory.createIRI(NAMESPACE+"#DataQualityDimension");
+		DATA_QUALITY_RULE=factory.createIRI(NAMESPACE+"#DataQualityRule");
+		EVENT_DATA=factory.createIRI(NAMESPACE+"#EventData");
+		FINANCIAL_EVENT=factory.createIRI(NAMESPACE+"#FinancialEvent");
+		VALIDITY=factory.createIRI(NAMESPACE+"#Validity");
+		DATA_OWNER = factory.createIRI(NAMESPACE+"#DataOwner");
+		DATA_CUSTODIAN=factory.createIRI(NAMESPACE+"#DataCustodian");
+		DATA_STEWARD=factory.createIRI(NAMESPACE+"#DataSteward");
+		DATA_CLASSIFIED_BY = factory.createIRI(NAMESPACE+"#data_classified_by");
+		//HAS_DATA_CUSTODIAN = factory.createIRI(NAMESPACE+"#has_data_custodian");
+		//HAS_DATA_OWNER = factory.createIRI(NAMESPACE+"#has_data_owner");
+		//HAS_DATA_STEWARD = factory.createIRI(NAMESPACE+"#has_data_steward");
+		IS_AUTHORATATIVE_SOURCE_FOR = factory.createIRI(NAMESPACE+"#is_authoratative_source_for");
+		IS_DATA_PROVIDER_FOR = factory.createIRI(NAMESPACE+"#is_data_provider_for");
+		IS_GOVERNED_BY = factory.createIRI(NAMESPACE+"#is_governed_by");
+		IS_MANAGED_BY = factory.createIRI(NAMESPACE+"#is_managed_by");
+		IS_PROVISIONED_BY=factory.createIRI(NAMESPACE+"#is_provisioned_by");
+		HAS_CODE = factory.createIRI(NAMESPACE+"#hasCode");
+		HAS_DESCRIPTION = factory.createIRI(NAMESPACE+"#hasDescription");
+		HAS_DISPLAY_NAME = factory.createIRI(NAMESPACE+"#hasDisplayName");
+		HAS_ID = factory.createIRI(NAMESPACE+"#hasId");
+		HAS_NAME = factory.createIRI(NAMESPACE+"#hasName");
+		DATA_VISIBIITY_CLASSIFICATION = factory.createIRI(NAMESPACE+"#DataVisibiityClassification");
+		PUBLIC = factory.createIRI(NAMESPACE+"#Public");
+		INTERNAL=factory.createIRI(NAMESPACE+"#Internal");
+		CONFIDENTIAL=factory.createIRI(NAMESPACE+"#Confidential");
+		HCI = factory.createIRI(NAMESPACE+"#HCI");
+		PID = factory.createIRI(NAMESPACE+"#PID");
+		CID = factory.createIRI(NAMESPACE+"#CID");
+		ASSET_ID = factory.createIRI(NAMESPACE + "asset_id");
+		ASSET_NAME = factory.createIRI(NAMESPACE+"asset_name");
+		IS_OWNED_BY=factory.createIRI(NAMESPACE+"is_owned_by");
+		APPLICATION_ID=factory.createIRI(NAMESPACE+"applicationId");;
+		APPLICATION_NAME=factory.createIRI(NAMESPACE+"applicationName");
+		SERVICE_NAME=factory.createIRI(NAMESPACE+"serviceName");;
+		SERVICE_ID=factory.createIRI(NAMESPACE+"serviceId");;
+		
 	}
 	
 }
