@@ -4,7 +4,7 @@
   <artifactId>EnterpriseInformationModel</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>EIM</name>
-  <description>EIM	</description>
+  <description>EIM</description>
   <dependencies>
   	<dependency>
   		<groupId>org.eclipse.rdf4j</groupId>
@@ -16,6 +16,11 @@
   		<artifactId>logback-classic</artifactId>
   		<version>1.1.7</version>
   	</dependency>
+  	<dependency>
+  <groupId>junit</groupId>
+  <artifactId>junit</artifactId>
+  <version>4.12</version>
+</dependency>
   </dependencies>
    <build>
         <plugins>
