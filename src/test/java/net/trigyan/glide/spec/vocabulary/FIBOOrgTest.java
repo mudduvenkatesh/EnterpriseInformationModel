@@ -36,7 +36,8 @@ public class FIBOOrgTest {
 			.setNamespace("rdfs",RDFS.NAMESPACE)
 			.setNamespace(FiboAgents.PREFIX,FiboAgents.NAMESPACE)
 			.setNamespace(FiboLeFBO.PREFIX,FiboLeFBO.NAMESPACE)
-			.setNamespace(FiboFormalOrganizations.PREFIX,FiboFormalOrganizations.NAMESPACE);
+			.setNamespace(FiboFormalOrganizations.PREFIX,FiboFormalOrganizations.NAMESPACE)
+			.setNamespace(EIM.PREFIX,EIM.NAMESPACE);
 		IRI myBank = factory.createIRI(companyBase+"MyEnterpriseBank");
 		builder.namedGraph("my-org:eim-graph-v1")      // add a new named graph to the model
 		       .subject(myBank)        // add  several statements about resource ex:john
@@ -47,7 +48,13 @@ public class FIBOOrgTest {
 					.add(RDF.TYPE, FiboLeFBO.Division)
 					.add(RDFS.LABEL, "Enterprise Shared Services")
 					.add(FiboAgents.hasName,"Enterprise Shared Services")
-					.add(FiboLeFBO.isSubUnitOf,myBank);
+					.add(FiboLeFBO.isSubUnitOf,myBank)
+				.subject(EIM.PREFIX+":"+"ECIF")
+					.add(RDF.TYPE, EIM.ANY_STANDARD_APPLICATION)
+					.add(RDFS.LABEL, "Enterprise Client Information File")
+					.add(EIM.HAS_CODE, "ECIF")
+					.add(EIM.HAS_NAME,"ECIF")
+					.add(EIM.IS_OWNED_BY, "my-org:ESS");
 		// add a triple to the default graph
 		builder.defaultGraph().add("my-org:eim-graph-v1", RDF.TYPE, "my-org:Graph");
 
