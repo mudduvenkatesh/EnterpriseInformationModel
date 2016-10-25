@@ -7,7 +7,7 @@ target/
 .project
 .settings
 .springBeans
-
+src/main/resources/catalog-v001.xml
 ### IntelliJ IDEA ###
 .idea
 *.iws
@@ -17,7 +17,7 @@ target/
 ### NetBeans ###
 nbproject/private/
 build/
-nbbuild/
+build/
 dist/
 nbdist/
 .nb-gradle/
