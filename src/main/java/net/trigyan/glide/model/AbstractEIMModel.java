@@ -4,7 +4,11 @@ import java.io.Serializable;
 import java.util.Optional;
 
 import org.eclipse.rdf4j.model.IRI;
-
+/**
+ * Abstract Class for any EIM Model
+ * @author vmuddu
+ *
+ */
 public abstract class AbstractEIMModel implements EIMModel, Serializable {
 
 	

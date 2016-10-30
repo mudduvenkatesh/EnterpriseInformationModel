@@ -52,6 +52,8 @@ public class FIBOOrgTest {
 		IRI buType = factory.createIRI(companyBase + "Business-Unit");
 		IRI bpBu = factory.createIRI(companyBase + "Business-Partners");
 		IRI bpBuIdentifier = factory.createIRI(companyBase,"BusinessUnit-"+"TSHSER");
+		IRI ctsBu=factory.createIRI(companyBase+"Client-Technology-Services");
+		IRI ctsBuId = factory.createIRI(companyBase,"BusinessUnit-"+"TOTECH");
 		
 		//BU Resource
 		
@@ -86,28 +88,63 @@ public class FIBOOrgTest {
 				builder.subject(isSectorIdentifier).add(RDFS.LABEL, "SECSRV");
 				builder.subject(mgSectorIdentifier).add(RDFS.LABEL, "MKTGRP_BPM");
 				builder.subject(otherSectorIdentifier).add(RDFS.LABEL, "OTHSEC");		
-				builder.subject(imSector).add(RDF.TYPE, mysector).add(FiboLeFBO.isSubUnitOf, myBank).add(FiboAgents.isIdentifiedBy, imSectorIdentifier);
-				builder.subject(isSector).add(RDF.TYPE, mysector).add(FiboLeFBO.isSubUnitOf, myBank).add(FiboAgents.isIdentifiedBy, isSectorIdentifier);
-				builder.subject(mgSector).add(RDF.TYPE, mysector).add(FiboLeFBO.isSubUnitOf, myBank).add(FiboAgents.isIdentifiedBy, mgSectorIdentifier);
+				builder.subject(imSector).add(RDF.TYPE, mysector)
+					.add(FiboLeFBO.isSubUnitOf, myBank)
+					.add(FiboAgents.isIdentifiedBy, imSectorIdentifier)
+					.add(FiboAgents.hasName, "Investment-Management");
+				builder.subject(isSector).add(RDF.TYPE, mysector)
+					.add(FiboLeFBO.isSubUnitOf, myBank)
+					.add(FiboAgents.isIdentifiedBy, isSectorIdentifier)
+					.add(FiboAgents.hasName, "Investment-Services");
+				builder.subject(mgSector).add(RDF.TYPE, mysector)
+					.add(FiboLeFBO.isSubUnitOf, myBank)
+					.add(FiboAgents.isIdentifiedBy, mgSectorIdentifier)
+					.add(FiboAgents.hasName, "Markets-Group");
 				
-				builder.subject(ssSector).add(RDF.TYPE, mysector).add(FiboLeFBO.isSubUnitOf, myBank).add(FiboAgents.isIdentifiedBy, otherSectorIdentifier);
+				builder.subject(ssSector)
+					.add(RDF.TYPE, mysector)
+					.add(FiboLeFBO.isSubUnitOf, myBank)
+					.add(FiboAgents.isIdentifiedBy, otherSectorIdentifier)
+					.add(FiboAgents.hasName, "Shared-Services-and-Other-Activities");
 				builder = addBu(builder,companyBase);
 				builder.subject(bpBuIdentifier).add(RDFS.LABEL, "TSHSER");
-				builder.subject(bpBu).add(RDF.TYPE, buType).add(FiboLeFBO.isSubUnitOf, ssSector).add(FiboAgents.isIdentifiedBy, bpBuIdentifier)
-				.add(FiboAgents.hasName, "BUSINESS PARTNERS")
-				.subject(EIM.PREFIX + ":" + "ECIF").add(RDF.TYPE, EIM.ANY_STANDARD_APPLICATION)
+				builder.subject(bpBu).add(RDF.TYPE, buType).add(FiboLeFBO.isSubUnitOf, ssSector)
+				.add(FiboAgents.isIdentifiedBy, bpBuIdentifier)
+				.add(FiboAgents.hasName, "BUSINESS PARTNERS");
+				builder.subject(ctsBuId).add(RDFS.LABEL, "TOTECH");
+				builder.subject(ctsBu).add(RDF.TYPE, buType).add(FiboLeFBO.isSubUnitOf, ssSector)
+				.add(FiboAgents.isIdentifiedBy,ctsBuId);
+				//add Corp Trust Bu
+				addBuUnit(factory,builder, companyBase,"Corporate-Trust","CPTRST",buType,isSector);
+				addBuUnit(factory,builder, companyBase,"Asset-Servicing","ASJPTK",buType,isSector);
+				addBuUnit(factory,builder, companyBase,"Broker-Dealer-Services","K01007",buType,isSector);
+				addApp(factory, builder, companyBase, 
+						"TRANSFER-OF-ASSETS", "TRANSFER OF ASSETS", "TOA", factory.createIRI(companyBase +"Asset-Servicing"));
+				addApp(factory, builder, companyBase, 
+						"TRANSFER-OF-ASSETS", "TRANSFER OF ASSETS", "TOA", factory.createIRI(companyBase+"Asset-Servicing"));
+				addApp(factory, builder, companyBase, 
+						"REPO-EDGE-APPLICATION", "REPO EDGE APPLICATION", "RPO", factory.createIRI(companyBase+"Corporate-Trust"));
+				addApp(factory, builder, companyBase, 
+						"Enterprise-Risk-Management-Platform-(MARS)", "Enterprise Risk Management Platform (MARS)", "ERI", 
+						bpBu);
+				
+				
+				builder.subject(EIM.PREFIX + ":" + "ECIF").add(RDF.TYPE, EIM.ANY_STANDARD_APPLICATION)
 				.add(RDFS.LABEL, "Enterprise Client Information File").add(EIM.HAS_CODE, "ECIF")
-				.add(EIM.HAS_NAME, "ECIF").add(EIM.IS_OWNED_BY, myAppESS).subject("my-org:PartyDataDomain")
-				.add(RDF.TYPE, EIM.MASTER_DATA)
-				// .add(RDF.TYPE, EIM.DATA_DOMAIN)
-				.add(RDFS.LABEL, "Party Data Domain").subject("my-org:HRDataDomain").add(RDF.TYPE, EIM.MASTER_DATA)
-				.subject(EIM.PREFIX + ":" + "PartyId").add(RDF.TYPE, EIM.DATA_ELEMENT)
+				.add(EIM.HAS_NAME, "ECIF").add(EIM.IS_OWNED_BY, factory.createIRI(companyBase+"Corporate-Trust"));
+				builder.subject("my-org:PartyDataDomain").add(RDF.TYPE, EIM.MASTER_DATA)
+					.add(RDFS.LABEL, "Party Data Domain");
+				builder.subject("my-org:HRDataDomain").add(RDF.TYPE, EIM.MASTER_DATA);
+				builder.subject(EIM.PREFIX + ":" + "PartyId").add(RDF.TYPE, EIM.DATA_ELEMENT)
 				.add(RDFS.LABEL, "Party Identifier").add(EIM.HAS_ID, "PartyId").add(EIM.HAS_NAME, "Party Identifier")
-				.add(EIM.DATA_CLASSIFIED_BY, partyDataDomain).subject(EIM.PREFIX + ":" + "PartyName")
+				.add(EIM.DATA_CLASSIFIED_BY, partyDataDomain);
+				builder.subject(EIM.PREFIX + ":" + "PartyName")
 				.add(RDF.TYPE, EIM.DATA_ELEMENT).add(RDFS.LABEL, "Party Name").add(EIM.HAS_ID, "PartyName")
-				.add(EIM.DATA_CLASSIFIED_BY, partyDataDomain).subject(EIM.PREFIX + ":" + "CountryOfRisk")
+				.add(EIM.DATA_CLASSIFIED_BY, partyDataDomain);
+				builder.subject(EIM.PREFIX + ":" + "CountryOfRisk")
 				.add(RDF.TYPE, EIM.CRITICAL_DATA_ELEMENT).add(RDFS.LABEL, "Country Of Risk").add(EIM.HAS_ID, "CountryOfRisk")
 				.add(EIM.DATA_CLASSIFIED_BY, partyDataDomain);
+				
 
 		// add a triple to the default graph
 		builder.defaultGraph().add("my-org:eim-graph-v1", RDF.TYPE, "my-org:Graph");
@@ -174,5 +211,27 @@ public class FIBOOrgTest {
 		return mb;
 		
 	}
+	
+	private ModelBuilder addBuUnit(ValueFactory factory,ModelBuilder mb,String companyBase,String buName,String buId,
+			IRI subjectType,IRI subUnit) {
+		String buName2=buName.replace("-", " ");
+		IRI bpBu = factory.createIRI(companyBase + buName);
+		IRI bpBuIdentifier = factory.createIRI(companyBase,"BusinessUnit-"+buId);
+		mb.subject(bpBu).add(RDF.TYPE, subjectType).add(FiboLeFBO.isSubUnitOf, subUnit)
+		.add(FiboAgents.isIdentifiedBy, bpBuIdentifier)
+		.add(FiboAgents.hasName, buName2);
+		return mb;
+	}
+	private ModelBuilder addApp(ValueFactory factory,ModelBuilder mb,String companyBase,
+			String subjectName,
+			String appName,String appid,
+			IRI ownedBy) {
+		mb.subject(EIM.PREFIX + ":" + subjectName).add(RDF.TYPE, EIM.ANY_STANDARD_APPLICATION)
+		.add(RDFS.LABEL, appName).add(EIM.HAS_CODE, appid)
+		.add(EIM.HAS_NAME, appName).add(EIM.IS_OWNED_BY, ownedBy);
+		
+		return mb;
+	}
+	//private ModelBuild addBusinessTerm(ValueFactory factory,ModelBuilder mb,String companyBase,)
 
 }

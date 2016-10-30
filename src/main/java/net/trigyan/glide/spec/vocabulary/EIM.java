@@ -82,6 +82,7 @@ public class EIM {
 	public static final IRI APPLICATION_NAME;
 	public static final IRI SERVICE_NAME;
 	public static final IRI SERVICE_ID;
+	public static final IRI HAS_DEFINITION;
 	
 	 
 	static {
@@ -141,8 +142,9 @@ public class EIM {
 		IS_OWNED_BY=factory.createIRI(NAMESPACE+"is_owned_by");
 		APPLICATION_ID=factory.createIRI(NAMESPACE+"applicationId");;
 		APPLICATION_NAME=factory.createIRI(NAMESPACE+"applicationName");
-		SERVICE_NAME=factory.createIRI(NAMESPACE+"serviceName");;
-		SERVICE_ID=factory.createIRI(NAMESPACE+"serviceId");;
+		SERVICE_NAME=factory.createIRI(NAMESPACE+"serviceName");
+		SERVICE_ID=factory.createIRI(NAMESPACE+"serviceId");
+		HAS_DEFINITION=factory.createIRI(NAMESPACE+"hasDefinition");
 		
 	}
 	

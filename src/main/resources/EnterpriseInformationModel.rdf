@@ -65,6 +65,7 @@
     <owl:ObjectProperty rdf:about="http://spec.trigyan.net/glide/EnterpriseInformationModel#is_governed_by">
         <rdfs:domain rdf:resource="http://spec.trigyan.net/glide/EnterpriseInformationModel#DataAsset"/>
         <rdfs:range rdf:resource="http://spec.trigyan.net/glide/EnterpriseInformationModel#DataSteward"/>
+        <rdfs:range rdf:resource="http://spec.trigyan.net/glide/EnterpriseInformationModel#GovernanceAsset"/>
     </owl:ObjectProperty>
     
 
@@ -170,11 +171,21 @@
     
 
 
+    <!-- http://spec.trigyan.net/glide/EnterpriseInformationModel#hasDefinition -->
+
+    <owl:DatatypeProperty rdf:about="http://spec.trigyan.net/glide/EnterpriseInformationModel#hasDefinition">
+        <rdfs:domain rdf:resource="http://spec.trigyan.net/glide/EnterpriseInformationModel#GovernanceAsset"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://spec.trigyan.net/glide/EnterpriseInformationModel#hasDescription -->
 
     <owl:DatatypeProperty rdf:about="http://spec.trigyan.net/glide/EnterpriseInformationModel#hasDescription">
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
         <rdfs:domain rdf:resource="http://spec.trigyan.net/glide/EnterpriseInformationModel#DataAsset"/>
+        <rdfs:domain rdf:resource="http://spec.trigyan.net/glide/EnterpriseInformationModel#GovernanceAsset"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
     
@@ -202,8 +213,15 @@
 
     <owl:DatatypeProperty rdf:about="http://spec.trigyan.net/glide/EnterpriseInformationModel#hasName">
         <rdfs:domain rdf:resource="http://spec.trigyan.net/glide/EnterpriseInformationModel#DataAsset"/>
+        <rdfs:domain rdf:resource="http://spec.trigyan.net/glide/EnterpriseInformationModel#GovernanceAsset"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
+    
+
+
+    <!-- http://spec.trigyan.net/glide/EnterpriseInformationModel#hasText -->
+
+    <owl:DatatypeProperty rdf:about="http://spec.trigyan.net/glide/EnterpriseInformationModel#hasText"/>
     
 
 
@@ -282,6 +300,14 @@
     
 
 
+    <!-- http://spec.trigyan.net/glide/EnterpriseInformationModel#BusinessEntity -->
+
+    <owl:Class rdf:about="http://spec.trigyan.net/glide/EnterpriseInformationModel#BusinessEntity">
+        <rdfs:subClassOf rdf:resource="http://spec.trigyan.net/glide/EnterpriseInformationModel#GovernanceAsset"/>
+    </owl:Class>
+    
+
+
     <!-- http://spec.trigyan.net/glide/EnterpriseInformationModel#BusinessRule -->
 
     <owl:Class rdf:about="http://spec.trigyan.net/glide/EnterpriseInformationModel#BusinessRule">
@@ -342,6 +368,18 @@
 
     <owl:Class rdf:about="http://spec.trigyan.net/glide/EnterpriseInformationModel#DataAsset">
         <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://spec.trigyan.net/glide/EnterpriseInformationModel#is_governed_by"/>
+                <owl:someValuesFrom rdf:resource="http://spec.trigyan.net/glide/EnterpriseInformationModel#DataOwner"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://spec.trigyan.net/glide/EnterpriseInformationModel#is_governed_by"/>
+                <owl:someValuesFrom rdf:resource="http://spec.trigyan.net/glide/EnterpriseInformationModel#GovernanceAsset"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://spec.trigyan.net/glide/EnterpriseInformationModel#visibility_classification"/>
@@ -503,6 +541,27 @@
 
     <owl:Class rdf:about="http://spec.trigyan.net/glide/EnterpriseInformationModel#GovernanceAsset">
         <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://spec.trigyan.net/glide/EnterpriseInformationModel#hasDefinition"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://spec.trigyan.net/glide/EnterpriseInformationModel#hasDescription"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://spec.trigyan.net/glide/EnterpriseInformationModel#hasName"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -571,7 +630,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://spec.trigyan.net/glide/EnterpriseInformationModel#is_owned_by"/>
-                <owl:allValuesFrom rdf:resource="http://www.omg.org/spec/EDMC-FIBO/FND/Organizations/Organizations/Organization"/>
+                <owl:someValuesFrom rdf:resource="http://www.omg.org/spec/EDMC-FIBO/FND/Organizations/Organizations/Organization"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
